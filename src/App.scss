@@ -1,0 +1,325 @@
+$soft-orange: hsl(35, 77%, 62%);
+$soft-red: hsl(5, 85%, 63%);
+
+$off-white: hsl(36, 100%, 99%);
+$grayish-blue: hsl(233, 8%, 79%);
+$dark-grayish-blue: hsl(236, 13%, 42%);
+$very-dark-blue: hsl(240, 100%, 5%);
+$color: #00001a;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.header {
+  position: fixed;
+  top: 0;
+  padding: 1.6rem 1rem;
+
+  &.scrolled {
+    background: $very-dark-blue;
+    padding: 1.6rem 1.8rem;
+
+    .logo,
+    button {
+      filter: invert(100%);
+    }
+  }
+
+  .header__container {
+    display: flex;
+    justify-content: space-between;
+
+    .logo {
+      width: 2.8rem;
+      transition: 0.5s;
+    }
+    .menu {
+      width: 2rem;
+      height: 2rem;
+      background: url(./assets/images/icon-menu.svg) no-repeat;
+      background-position: center;
+      border: none;
+      cursor: pointer;
+      z-index: 3;
+      transition: 0.5s;
+
+      &.active {
+        background: url(./assets/images/icon-menu-close.svg) no-repeat;
+        filter: invert(0);
+      }
+    }
+    .nav {
+      width: 65%;
+      min-height: 100vh;
+      position: fixed;
+      top: 0;
+      right: -100%;
+      background: #fff;
+      box-shadow: unset;
+      padding: 10rem 2rem;
+      transition: 0.5s ease;
+
+      &.active {
+        right: 0;
+        box-shadow: 0 0 0 40rem #0008;
+        z-index: 2;
+      }
+
+      .Menu__List {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+        font-size: 1.1rem;
+        .List__Item {
+          cursor: pointer;
+          .List__Link {
+            color: $very-dark-blue;
+            transition: 0.5s;
+          }
+        }
+      }
+    }
+  }
+}
+
+.main {
+  display: grid;
+  margin: 5rem 1rem 0;
+
+  .article {
+    display: grid;
+    gap: 1rem;
+
+    .article__title {
+      font-weight: 800;
+      font-size: 2.502rem;
+      color: $very-dark-blue;
+      line-height: 1;
+    }
+    .texts__block {
+      font-size: 0.95rem;
+      line-height: 1.5;
+
+      .read-more__link {
+        display: block;
+        background: $soft-red;
+        width: 10rem;
+        text-align: center;
+        padding: 0.8rem 0;
+        color: $off-white;
+        font-weight: 600;
+        margin: 1.5rem 0;
+        letter-spacing: 0.15rem;
+        text-transform: uppercase;
+      }
+    }
+  }
+  .aside {
+    display: grid;
+    gap: 1.5rem;
+    padding: 1.2rem;
+    background-color: $very-dark-blue;
+    margin-top: 2.2rem;
+    margin-bottom: 4rem;
+
+    .aside__heading {
+      color: $soft-orange;
+      font-size: 1.6rem;
+    }
+    .aside__block {
+      display: grid;
+      gap: 0.5rem;
+      border-bottom: 1px solid rgba($color: $off-white, $alpha: 0.4);
+      padding-bottom: 2rem;
+
+      .block__title {
+        color: white;
+        font-weight: 700;
+      }
+      .block__description {
+        color: $dark-grayish-blue;
+        font-size: 0.95rem;
+      }
+
+      &:last-of-type {
+        border-bottom: none;
+      }
+    }
+  }
+
+  .section {
+    display: grid;
+    gap: 3rem;
+
+    .section__block {
+      display: flex;
+      gap: 1rem;
+
+      .section__img {
+        width: 5.8rem;
+      }
+      .section__text-block {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+
+        .section__title {
+          display: flex;
+          flex-direction: column;
+          gap: 0.4rem;
+          font-weight: 800;
+          color: $very-dark-blue;
+          font-size: 1.2rem;
+
+          .section__number {
+            color: $grayish-blue;
+            font-size: 2rem;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: 64rem) {
+  .header {
+    padding: 5rem 12rem 4rem;
+    background-color: white;
+
+    &.scrolled {
+      background: $very-dark-blue;
+      padding: 2rem 2.6rem;
+
+      .logo {
+        filter: invert(100%);
+      }
+      .header__container {
+        .nav {
+          .Menu__List {
+            .List__Item {
+              .List__Link {
+                color: white;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .menu {
+      display: none;
+    }
+    .header__container {
+      align-items: center;
+      .logo {
+        width: 3rem;
+      }
+      .nav {
+        all: unset;
+        .Menu__List {
+          flex-direction: row;
+          font-size: 1rem;
+          .List__Item {
+            position: relative;
+            &::after {
+              content: "";
+              position: absolute;
+              bottom: -1px;
+              left: 0;
+              width: 0;
+              height: 2px;
+              background: $soft-orange;
+              transition: all 0.5s;
+            }
+
+            &:hover {
+              &::after {
+                width: 100%;
+              }
+              .List__Link {
+                color: $soft-orange;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  .main {
+    margin: 10rem 12rem 0;
+    grid-template-columns: 40rem 20rem;
+    grid-template-rows: 1fr 7rem;
+    column-gap: 1.5rem;
+
+    .article {
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 1fr 1fr;
+      row-gap: 1.7rem;
+      .texts__block {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+        .texts {
+          font-size: 0.86rem;
+        }
+        .read-more__link {
+          transition: 0.5s;
+
+          &:hover {
+            background: $very-dark-blue;
+          }
+        }
+      }
+      .Illustration {
+        grid-column: span 2;
+      }
+      .article__title {
+        font-size: 3rem;
+        line-height: 1.22;
+      }
+    }
+    .aside {
+      display: flex;
+      flex-direction: column;
+      gap: 1.8rem;
+      padding: 3rem 1.7rem;
+      margin: unset;
+      height: 29.77rem;
+
+      .aside__block {
+        gap: 0.7rem;
+        .block__description {
+          font-size: 0.9rem;
+        }
+      }
+    }
+    .section {
+      grid-column: span 2;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 0.8rem;
+
+      .section__block {
+        .section__img {
+          width: 6.5rem;
+        }
+        .section__text-block {
+          justify-content: center;
+          gap: 1rem;
+          .section__title {
+            font-size: 1.02rem;
+            &:hover {
+              color: $soft-red;
+            }
+          }
+          .section__text {
+            font-size: 0.9rem;
+          }
+        }
+      }
+    }
+  }
+}
